@@ -11,15 +11,19 @@
 #include "lamp.h"
 #include "led.h"
 
-const char* apName = "light_wifi_config";
-const char* hostName = "mylight";
+const char *apName = "light_wifi_config";
+const char *hostName = "mylight";
 
+bool is_mdns_begin = false;
+
+WiFiManager wm;
 AsyncWebServer server(80);
 
 void start_server()
 {
 	if (MDNS.begin(hostName))
 	{ // Start mDNS with name esp8266
+		is_mdns_begin = true;
 		Serial.println("MDNS started");
 		Serial.printf("http://%s.local\n", hostName);
 	}
@@ -46,6 +50,11 @@ void start_server()
 		} else {
 			request->send(200, "text/plain", "Hi! I am ESP8266 lamp.");
 		} });
+	server.on("/reset", HTTP_GET, [](AsyncWebServerRequest *request)
+			  {
+			request->send(200, "text/plain", "reset");
+			wm.resetSettings();
+			ESP.restart(); });
 
 	AsyncElegantOTA.begin(&server); // Start ElegantOTA
 	server.begin();
@@ -55,8 +64,6 @@ void start_server()
 void setup()
 {
 	Serial.begin(9600);
-
-	WiFiManager wm;
 
 	// reset settings - wipe stored credentials for testing
 	// these are stored by the esp library
@@ -84,5 +91,8 @@ void setup()
 void loop()
 {
 	// put your main code here, to run repeatedly:
-	MDNS.update();
+	if (is_mdns_begin)
+	{
+		MDNS.update();
+	}
 }
