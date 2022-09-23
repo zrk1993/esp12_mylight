@@ -89,6 +89,7 @@ void setup() {
 		Serial.println(WiFi.localIP());
 		blink_ok();
 		start_server();
+		led_init();
 	}
 }
 

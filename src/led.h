@@ -8,10 +8,14 @@ const int LED_PINS_LEN = sizeof(LED_PINS) / sizeof(LED_PINS[0]);
 
 int led_bri = 0;       //[0, 100]
 
-void led_update_v(int v)
-{
-    for (int i = 0; i < LED_PINS_LEN; i++)
-    {
+void led_init() {
+	for (size_t i = 0; i < LED_PINS_LEN; i++) {
+		pinMode(LED_PINS[i], OUTPUT);
+	}
+}
+
+void led_update_v(int v) {
+    for (int i = 0; i < LED_PINS_LEN; i++) {
         if (i * 20 < v)
         {
             printf("序号%d ON\n", i);
@@ -26,8 +30,7 @@ void led_update_v(int v)
     led_bri = v;
 }
 
-int get_light_bri()
-{
+int get_light_bri() {
     return led_bri;
 }
 
