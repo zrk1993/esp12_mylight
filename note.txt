@@ -8,3 +8,7 @@ request->send(response);
 
 gcc filetoarray.c -o filetoarray
 ./filetoarray index.html.gz > index.h
+
+# 配网方式
+
+airkiss smartconfig softap
