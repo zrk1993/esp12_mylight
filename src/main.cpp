@@ -140,6 +140,7 @@ void setup() {
 		Serial.println("connected...yeey :)");
 		Serial.println("IP address: ");
 		Serial.println(WiFi.localIP());
+		led_init();
 		blink_ok();
 		start_server();
 		client.setServer(mqtt_server, mqtt_server_port); // 设置mqtt服务器
