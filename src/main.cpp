@@ -67,11 +67,11 @@ void start_server() {
 	Serial.println("HTTP server started");
 }
 
-void callback(char* topic, byte* payload, unsigned int length) {
+void callback(char* topic, byte* payload, size_t length) {
 	Serial.print("Topic:");
 	Serial.println(topic);
 	String msg = "";
-	for (unsigned int i = 0; i < length; i++) {
+	for (size_t i = 0; i < length; i++) {
 		msg += (char)payload[i];
 	}
 	Serial.print("Msg:");
@@ -108,7 +108,6 @@ void reconnect() {
     }
   }
 }
-
 
 bool shouldSaveConfig = false;
 void saveConfigCallback () {
