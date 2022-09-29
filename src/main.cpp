@@ -13,7 +13,7 @@
 #include "led.h"
 #include "PubSubClient.h"
 
-const char *apName = "light_wifi_config";
+const char *apName = "灯-网络配置";
 const char *hostName = "mylight";
 
 #define ID_MQTT  "d6d8fcd160ce48a3b38ff76e7e2df726"     //用户私钥，控制台获取
@@ -59,7 +59,8 @@ void start_server() {
 		request->send(200, "text/plain", "reset");
 		wm.resetSettings();
 		Serial.println("restart 。。。 ");
-		ESP.restart();
+		ESP.reset();
+		// ESP.restart();
 	});
 
 	AsyncElegantOTA.begin(&server); // Start ElegantOTA
@@ -124,6 +125,7 @@ void setup() {
 	wm.setSaveConfigCallback(saveConfigCallback);
 
 	bool res = wm.autoConnect(apName);
+	//bool res = wm.startConfigPortal(apName);
 	if (!res) {
 		Serial.println("Failed to connect");
 		blink_err();

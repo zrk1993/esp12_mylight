@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>配置设备网络</title>
+  <style>
+    body {
+        margin: 0;
+        overflow-x: auto;
+        color: #323233;
+        font-size: 16px;
+        font-family: Open Sans,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Segoe UI,Arial,Roboto,PingFang SC,miui,Hiragino Sans GB,Microsoft Yahei,sans-serif;
+        background-color: #f7f8fa;
+    }
+    .flex {
+      display: flex;
+    }
+    .flex-1 {
+      flex: 1;
+    }
+    .tac {
+      text-align: center;
+    }
+    .justify-space-between {
+      justify-content: space-between;
+    }
+    .align-items-center {
+        align-items: center;
+    }
+    .fs14 {
+        font-size: 14px;
+    }
+    .btn {
+      padding: 10px 20px;
+    }
+    .ml5 {
+      margin-left: 5px;
+    }
+    .ml10 {
+      margin-left: 10px;
+    }
+    .mx15 {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    .mr10 {
+      margin-right: 10px;
+    }
+    .mt10 {
+        margin-top: 10px;
+    }
+    .mb10 {
+        margin-bottom: 10px;
+    }
+    .py15 {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    .bdb {
+        border-bottom: 1px solid #f5f5f5;
+    }
+    .wifi-icon  {
+        width: 14px;
+        height: 14px;
+    }
+    .wifi-icon.no-icon svg {
+        display: none;
+    }
+    .connect-icon {
+        width: 14px;
+        height: 14px;
+    }
+  </style>
+  <style>
+
+  </style>
+  <style>
+    #app {
+      padding: 0px;
+    }
+    .box {
+        border-radius: 8px;
+        background: #fff;
+        margin: 0 16px;
+    }
+    .tip-box {
+        margin: 20px 0 0 4px;
+        font-size: 14px;
+        color: rgba(69,90,100,.6);
+        padding-left: 15px;
+    }
+    .wifi-box {
+        margin: 10px 15px 15px 15px;
+        min-height: 30px;
+    }
+    .wifi-box .item {
+        display: flex;
+        align-items: center;
+        padding: 16px 16px;
+        border-bottom: 1px solid #f5f5f5;
+    }
+    .wifi-box .item:last-child {
+        border-bottom: none;
+    }
+    .wifi-box .wifi-name {
+        flex: 1;
+        font-size: 16px;
+        text-align: left;
+        margin-left: 8px;
+    }
+    .wifi-box .connect-icon {
+        margin-right: 2px;
+    }
+    .input-box {
+        display: flex;
+        align-items: center;
+        padding: 16px 16px;
+    }
+    .input-box label {
+        color: #646565;
+        font-size: 16px;
+        margin-right: 15px;
+        margin-left: 17px;
+    }
+    .input-box input {
+        color: #323233;
+        flex: 1;
+        font-size: 16px;
+        outline: none;
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+        color: var(--van-field-input-text-color);
+        line-height: inherit;
+        text-align: left;
+        background-color: transparent;
+        border: 0;
+        resize: none;
+        user-select: auto;
+    }
+    .sava-btn {
+        border-radius: 16px;
+        background: #fff;
+        margin: 25px 15px 0 15px;
+        color: #1989fa;
+        font-size: 18px;
+        font-weight: 600;
+        text-align: center;
+        padding: 12px 0;
+    }
+  </style>
+  <style>
+  </style>
+</head>
+
+<body>
+<div id="app">
+    <div class="tip-box mb10 flex align-items-center">
+        <span>选择网络</span>
+        <span id="loading1" class="loading-icon" style="width: 20px; height: 20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background:transparent; display: block; shape-rendering: auto; animation-play-state: running; animation-delay: 0s;" width="20px" height="20px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                <g transform="rotate(0 50 50)" style="animation-play-state: running; animation-delay: 0s;">
+                  <rect x="45" y="17" rx="5" ry="11" width="10" height="22" fill="#666666" style="animation-play-state: running; animation-delay: 0s;">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.875s" repeatCount="indefinite" style="animation-play-state: running; animation-delay: 0s;"/>
+                  </rect>
+                </g><g transform="rotate(45 50 50)" style="animation-play-state: running; animation-delay: 0s;">
+                  <rect x="45" y="17" rx="5" ry="11" width="10" height="22" fill="#666666" style="animation-play-state: running; animation-delay: 0s;">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.75s" repeatCount="indefinite" style="animation-play-state: running; animation-delay: 0s;"/>
+                  </rect>
+                </g><g transform="rotate(90 50 50)" style="animation-play-state: running; animation-delay: 0s;">
+                  <rect x="45" y="17" rx="5" ry="11" width="10" height="22" fill="#666666" style="animation-play-state: running; animation-delay: 0s;">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.625s" repeatCount="indefinite" style="animation-play-state: running; animation-delay: 0s;"/>
+                  </rect>
+                </g><g transform="rotate(135 50 50)" style="animation-play-state: running; animation-delay: 0s;">
+                  <rect x="45" y="17" rx="5" ry="11" width="10" height="22" fill="#666666" style="animation-play-state: running; animation-delay: 0s;">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5s" repeatCount="indefinite" style="animation-play-state: running; animation-delay: 0s;"/>
+                  </rect>
+                </g><g transform="rotate(180 50 50)" style="animation-play-state: running; animation-delay: 0s;">
+                  <rect x="45" y="17" rx="5" ry="11" width="10" height="22" fill="#666666" style="animation-play-state: running; animation-delay: 0s;">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.375s" repeatCount="indefinite" style="animation-play-state: running; animation-delay: 0s;"/>
+                  </rect>
+                </g><g transform="rotate(225 50 50)" style="animation-play-state: running; animation-delay: 0s;">
+                  <rect x="45" y="17" rx="5" ry="11" width="10" height="22" fill="#666666" style="animation-play-state: running; animation-delay: 0s;">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.25s" repeatCount="indefinite" style="animation-play-state: running; animation-delay: 0s;"/>
+                  </rect>
+                </g><g transform="rotate(270 50 50)" style="animation-play-state: running; animation-delay: 0s;">
+                  <rect x="45" y="17" rx="5" ry="11" width="10" height="22" fill="#666666" style="animation-play-state: running; animation-delay: 0s;">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.125s" repeatCount="indefinite" style="animation-play-state: running; animation-delay: 0s;"/>
+                  </rect>
+                </g><g transform="rotate(315 50 50)" style="animation-play-state: running; animation-delay: 0s;">
+                  <rect x="45" y="17" rx="5" ry="11" width="10" height="22" fill="#666666" style="animation-play-state: running; animation-delay: 0s;">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite" style="animation-play-state: running; animation-delay: 0s;"/>
+                  </rect>
+                </g>
+                <!-- [ldio] generated by https://loading.io/ --></svg>
+        </span>
+
+    </div>
+    <div class="wifi-box box" id="wifi-box">
+        <!-- <div class="item" ssid="">
+            <div class="wifi-icon"></div>
+            <div class="wifi-name">查找网络</div>
+            <div class="connect-icon"></div>
+        </div> -->
+        <!-- <div class="item">
+            <div class="wifi-icon no-icon"></div>
+            <div class="wifi-name">其他...</div>
+            <div class="connect-icon"></div>
+        </div> -->
+
+        <div class="py15">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background:transparent; display: block; shape-rendering: auto; animation-play-state: running; animation-delay: 0s;" width="40px" height="40px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                <g transform="rotate(0 50 50)" style="animation-play-state: running; animation-delay: 0s;">
+                  <rect x="45" y="17" rx="5" ry="11" width="10" height="22" fill="#666666" style="animation-play-state: running; animation-delay: 0s;">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.875s" repeatCount="indefinite" style="animation-play-state: running; animation-delay: 0s;"/>
+                  </rect>
+                </g><g transform="rotate(45 50 50)" style="animation-play-state: running; animation-delay: 0s;">
+                  <rect x="45" y="17" rx="5" ry="11" width="10" height="22" fill="#666666" style="animation-play-state: running; animation-delay: 0s;">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.75s" repeatCount="indefinite" style="animation-play-state: running; animation-delay: 0s;"/>
+                  </rect>
+                </g><g transform="rotate(90 50 50)" style="animation-play-state: running; animation-delay: 0s;">
+                  <rect x="45" y="17" rx="5" ry="11" width="10" height="22" fill="#666666" style="animation-play-state: running; animation-delay: 0s;">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.625s" repeatCount="indefinite" style="animation-play-state: running; animation-delay: 0s;"/>
+                  </rect>
+                </g><g transform="rotate(135 50 50)" style="animation-play-state: running; animation-delay: 0s;">
+                  <rect x="45" y="17" rx="5" ry="11" width="10" height="22" fill="#666666" style="animation-play-state: running; animation-delay: 0s;">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5s" repeatCount="indefinite" style="animation-play-state: running; animation-delay: 0s;"/>
+                  </rect>
+                </g><g transform="rotate(180 50 50)" style="animation-play-state: running; animation-delay: 0s;">
+                  <rect x="45" y="17" rx="5" ry="11" width="10" height="22" fill="#666666" style="animation-play-state: running; animation-delay: 0s;">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.375s" repeatCount="indefinite" style="animation-play-state: running; animation-delay: 0s;"/>
+                  </rect>
+                </g><g transform="rotate(225 50 50)" style="animation-play-state: running; animation-delay: 0s;">
+                  <rect x="45" y="17" rx="5" ry="11" width="10" height="22" fill="#666666" style="animation-play-state: running; animation-delay: 0s;">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.25s" repeatCount="indefinite" style="animation-play-state: running; animation-delay: 0s;"/>
+                  </rect>
+                </g><g transform="rotate(270 50 50)" style="animation-play-state: running; animation-delay: 0s;">
+                  <rect x="45" y="17" rx="5" ry="11" width="10" height="22" fill="#666666" style="animation-play-state: running; animation-delay: 0s;">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.125s" repeatCount="indefinite" style="animation-play-state: running; animation-delay: 0s;"/>
+                  </rect>
+                </g><g transform="rotate(315 50 50)" style="animation-play-state: running; animation-delay: 0s;">
+                  <rect x="45" y="17" rx="5" ry="11" width="10" height="22" fill="#666666" style="animation-play-state: running; animation-delay: 0s;">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite" style="animation-play-state: running; animation-delay: 0s;"/>
+                  </rect>
+                </g>
+                <!-- [ldio] generated by https://loading.io/ --></svg>
+        </div>
+    </div>
+</div>
+<div id="app2">
+    <div class="tip-box mb10">加入网络</div>
+    <div class="box" style="margin-top: 10px">
+        <div class="input-box bdb">
+            <label>名称</label>
+            <input type="text" placeholder="网络名称" id="ssid">
+        </div>
+        <div class="input-box">
+            <label>密码</label>
+            <input type="text" placeholder="密码" id="password">
+        </div>
+    </div>
+    <div class="sava-btn" onclick="saveWifi()">保存</div>
+</div>
+<div id="app3">
+    <div></div>
+    <div>
+
+    </div>
+</div>
+</body>
+<script>
+    function getWIFIList () {
+        const loading = document.getElementById('loading1');
+        loading.style.display = 'block'
+        fetch("/wifi2").then(function (res) {
+            return res.text()
+        }).then(function(v) {
+            const list = v.split('_*#*_').map(v => v.trim()).filter(v => v);
+            list.push('');
+            setWifi(list);
+            loading.style.display = 'none'
+        }).catch(function (e) {
+            alert("系统错误")
+            loading.style.display = 'none'
+        })
+    }
+    function saveWifi () {
+        const ssid = document.getElementById('ssid').value;
+        const password = document.getElementById('password').value;
+        if (!ssid) {
+            document.getElementById('ssid').focus();
+            return
+        }
+        if (!password) {
+            document.getElementById('password').focus();
+            return
+        }
+        fetch(`/wifisave?s=${ssid}&p=${password}`).then(function (res) {
+            return res.text()
+        }).then(function(v) {
+            alert(v)
+        }).catch(function (e) {
+            alert("系统错误")
+        })
+    }
+    function setWifi (wifis) {
+        const wifiBoxEL = document.getElementById('wifi-box');
+        let str = '';
+        wifis.forEach(v => {
+            str += `<div class="item" ssid="${v}">
+                <div class="wifi-icon ${v ? '' : 'no-icon'}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="14px" height="14px" viewBox="0 0 1024 1024" version="1.1"><path fill="#333333" d="M512.2 192 512.2 192c-159.8 0-311.4 59.8-427.8 168.2L64 379.2l19.8 19.6 64.6 64 18.6 18.4 19.2-17.6c89-81.8 204.6-127 325.6-127 121 0 236.8 45.2 325.6 127l19.2 17.6 18.6-18.4 64.6-64 19.8-19.6-20.4-19C823.2 251.8 671.4 192 512.2 192zM794.8 512.8c-77.6-70.2-177.8-108.8-282.2-108.8l-0.2 0-0.6 0-17 0-0.2 0.4c-98.4 4-192 42.2-265.2 108.4l-21 19 20.2 20 65.4 64.8 18.2 18 19.2-16.8c50.6-44.4 114.8-69 180.6-69 66.2 0 130.4 24.6 181 69l19.2 16.8 18.2-18 65.4-64.8 20.2-20L794.8 512.8zM512.4 832l19.2-19 105.6-104.4 21.2-21-23.2-19c-30.8-22.8-64.8-40-123-40-58 0-89.8 18.8-123 40l-23 19 21.2 21 105.6 104.4L512.4 832z"/></svg>
+                </div>
+                <div class="wifi-name">${v ? v : '其他...'}</div>
+                <div class="connect-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="14px" height="14px" viewBox="0 0 1024 1024" version="1.1"><path fill="#333333" d="M557.226667 346.026667l60.373333 60.373333a298.666667 298.666667 0 0 1 0 422.4l-15.104 15.061333a298.666667 298.666667 0 0 1-422.4-422.4l60.373333 60.373334a213.333333 213.333333 0 1 0 301.696 301.696l15.104-15.104a213.333333 213.333333 0 0 0 0-301.653334l-60.373333-60.373333 60.373333-60.330667z m286.634666 256.469333l-60.330666-60.330667a213.333333 213.333333 0 1 0-301.696-301.696l-15.104 15.104a213.333333 213.333333 0 0 0 0 301.653334l60.373333 60.373333-60.373333 60.330667-60.330667-60.330667a298.666667 298.666667 0 0 1 0-422.4l15.104-15.061333a298.666667 298.666667 0 0 1 422.4 422.4z"/></svg>
+                </div>
+            </div>`
+        });
+        wifiBoxEL.innerHTML = str
+        setClickListen();
+    }
+    function setClickListen () {
+        const items = document.querySelectorAll('.wifi-box .item')
+        items.forEach(v => {
+            v.addEventListener('click', function() {
+                const ssid = this.getAttribute('ssid');
+                if (ssid) {
+                    document.getElementById('ssid').value = ssid;
+                    document.getElementById('password').focus();
+                } else {
+                    document.getElementById('ssid').value = '';
+                    document.getElementById('ssid').focus();
+                }
+            })
+        });
+    }
+    setClickListen()
+    getWIFIList()
+</script>
+
+</html>
