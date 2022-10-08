@@ -88,26 +88,26 @@ void callback(char* topic, byte* payload, size_t length) {
 }
 
 void reconnect() {
-  // Loop until we're reconnected
-  while (!client.connected()) {
-    Serial.print("Attempting MQTT connection...");
-    // Attempt to connect
-    if (client.connect(ID_MQTT)) {
-      Serial.println("connected");
-      Serial.print("subscribe:");
-      Serial.println(topic);
-      //订阅主题，如果需要订阅多个主题，可发送多条订阅指令client.subscribe(topic2);client.subscribe(topic3);
-      client.subscribe(topic);
-	  blink_ok();
-    } else {
-      Serial.print("failed, rc=");
-      Serial.print(client.state());
-      Serial.println(" try again in 5 seconds");
-      // Wait 5 seconds before retrying
-	  blink_err();
-      delay(5000);
-    }
-  }
+	// Loop until we're reconnected
+	while (!client.connected()) {
+		Serial.print("Attempting MQTT connection...");
+		// Attempt to connect
+		if (client.connect(ID_MQTT)) {
+			Serial.println("connected");
+			Serial.print("subscribe:");
+			Serial.println(topic);
+			//订阅主题，如果需要订阅多个主题，可发送多条订阅指令client.subscribe(topic2);client.subscribe(topic3);
+			client.subscribe(topic);
+			blink_ok();
+		} else {
+			Serial.print("failed, rc=");
+			Serial.print(client.state());
+			Serial.println(" try again in 5 seconds");
+			// Wait 5 seconds before retrying
+			blink_err();
+			delay(5000);
+		}
+	}
 }
 
 bool shouldSaveConfig = false;
@@ -152,8 +152,9 @@ void setup() {
 void loop() {
 	// put your main code here, to run repeatedly:
 	MDNS.update();
-	if (!client.connected()) {
+	if (client.connected()) {
+		client.loop();
+	} else {
 		reconnect();
 	}
-	client.loop();
 }
