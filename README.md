@@ -10,6 +10,6 @@
 2. 在线升级固件
 3. WIFI配网
 
-![ABC](https://github.com/zrk1993/esp12_mylight/imgs/sch.jpg)
-![ABC](https://github.com/zrk1993/esp12_mylight/imgs/pcb.jpg)
-![ABC](https://github.com/zrk1993/esp12_mylight/imgs/3d.jpg)
+![SCH](/imgs/sch.jpg)
+![PCB](/imgs/pcb.jpg)
+![3的效果图](/imgs/3d.jpg)
