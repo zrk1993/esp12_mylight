@@ -2,9 +2,10 @@
 
 ### 功能
 
-1. H5网页控制，小度语音控制
-2. 在线升级固件
-3. WIFI AP配网
+1. H5网页控制（http://mylight.local）
+2. 小度语音控制（巴法平台）MQTT
+3. 在线升级固件（AsyncElegantOTA）
+4. WIFI AP配网（WiFiManager）
 
 ### 所需材料
 
