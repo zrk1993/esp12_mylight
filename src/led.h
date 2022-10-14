@@ -15,8 +15,9 @@ void led_init() {
 }
 
 void led_update_v(int v) {
+    int step = 100 / LED_PINS_LEN;
     for (int i = 0; i < LED_PINS_LEN; i++) {
-        if (i * 20 < v)
+        if (i * step < v)
         {
             printf("序号%d ON\n", i);
             digitalWrite(LED_PINS[i], HIGH);
