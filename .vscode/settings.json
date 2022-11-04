@@ -8,6 +8,8 @@
         "*.tcc": "cpp",
         "string": "cpp",
         "string_view": "cpp",
-        "*.txt": "cpp"
+        "*.txt": "cpp",
+        "atomic": "cpp",
+        "cstdint": "cpp"
     }
 }

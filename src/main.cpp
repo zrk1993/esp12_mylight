@@ -10,14 +10,16 @@
 
 #include "blink.h"
 #include "lamp.h"
+#include "setting_html_gz.h"
 #include "led.h"
 #include "PubSubClient.h"
+#include "config.h"
 
 const char *apName = "灯-网络配置";
-const char *hostName = "mylight";
+const char *hostName = "led002";
 
 #define ID_MQTT  "d6d8fcd160ce48a3b38ff76e7e2df726"     //用户私钥，控制台获取
-const char*  topic = "light002";        //主题名字，可在巴法云控制台自行创建，名称随意
+const char*  topic = "light003";        //主题名字，可在巴法云控制台自行创建，名称随意
 
 const char* mqtt_server = "bemfa.com"; //默认，MQTT服务器
 const int mqtt_server_port = 9501;      //默认，MQTT服务器
@@ -35,6 +37,11 @@ void start_server() {
 
 	server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
 		AsyncWebServerResponse *response = request->beginResponse_P(200, "text/html", lamp_html_gz, lamp_html_gz_len);
+		response->addHeader("Content-Encoding", "gzip");
+		request->send(response);
+	});
+	server.on("/set", HTTP_GET, [](AsyncWebServerRequest *request) {
+		AsyncWebServerResponse *response = request->beginResponse_P(200, "text/html", setting_html_gz, setting_html_gz_len);
 		response->addHeader("Content-Encoding", "gzip");
 		request->send(response);
 	});
@@ -57,10 +64,26 @@ void start_server() {
 	});
 	server.on("/reset", HTTP_GET, [](AsyncWebServerRequest *request) {
 		request->send(200, "text/plain", "reset");
-		wm.resetSettings();
 		Serial.println("restart 。。。 ");
 		ESP.reset();
-		// ESP.restart();
+		ESP.restart();
+	});
+	server.on("/restart", HTTP_GET, [](AsyncWebServerRequest *request) {
+		request->send(200, "text/plain", "restart");
+		Serial.println("restart 。。。 ");
+		ESP.restart();
+	});
+	server.on("/loadConfig", HTTP_GET, [](AsyncWebServerRequest *request) {
+		String config_txt = getConfigTxt();
+		request->send(200, "text/plain", config_txt);
+	});
+	server.on("/saveConfig", HTTP_GET, [](AsyncWebServerRequest *request) {
+		strcpy(config.stassid, request->arg("stassid").c_str());
+		strcpy(config.stapsw, request->arg("stapsw").c_str());
+		strcpy(config.cuid, request->arg("cuid").c_str());
+		strcpy(config.ctopic, request->arg("ctopic").c_str());
+		saveConfig();
+		request->send(200, "text/plain", "ok");
 	});
 
 	AsyncElegantOTA.begin(&server); // Start ElegantOTA
@@ -118,6 +141,10 @@ void saveConfigCallback () {
 
 void setup() {
 	Serial.begin(9600);
+	Serial.println("config_txt");
+	loadConfig();
+	String config_txt = getConfigTxt();
+	Serial.println(config_txt);
 
 	// reset settings - wipe stored credentials for testing
 	// these are stored by the esp library
