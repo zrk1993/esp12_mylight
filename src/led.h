@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 
-const int LED_PINS[] = {0, 4, 10, 14, 16};
+const int LED_PINS[] = {4, 14};
 const int LED_PINS_LEN = sizeof(LED_PINS) / sizeof(LED_PINS[0]);
 
 int led_bri = 0;       //[0, 100]
@@ -11,6 +11,7 @@ int led_bri = 0;       //[0, 100]
 void led_init() {
 	for (size_t i = 0; i < LED_PINS_LEN; i++) {
 		pinMode(LED_PINS[i], OUTPUT);
+        digitalWrite(LED_PINS[i], LOW);
 	}
 }
 

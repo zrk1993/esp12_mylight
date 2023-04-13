@@ -19,7 +19,7 @@ const char *apName = "灯-网络配置";
 const char *hostName = "led002";
 
 #define ID_MQTT  "d6d8fcd160ce48a3b38ff76e7e2df726"     //用户私钥，控制台获取
-const char*  topic = "light003";        //主题名字，可在巴法云控制台自行创建，名称随意
+const char*  topic = "light002";        //主题名字，可在巴法云控制台自行创建，名称随意
 
 const char* mqtt_server = "bemfa.com"; //默认，MQTT服务器
 const int mqtt_server_port = 9501;      //默认，MQTT服务器
@@ -121,13 +121,13 @@ void reconnect() {
 			Serial.println(topic);
 			//订阅主题，如果需要订阅多个主题，可发送多条订阅指令client.subscribe(topic2);client.subscribe(topic3);
 			client.subscribe(topic);
-			blink_ok();
+			//blink_ok();
 		} else {
 			Serial.print("failed, rc=");
 			Serial.print(client.state());
 			Serial.println(" try again in 5 seconds");
 			// Wait 5 seconds before retrying
-			blink_err();
+			//blink_err();
 			delay(5000);
 		}
 	}
@@ -142,26 +142,27 @@ void saveConfigCallback () {
 void setup() {
 	Serial.begin(9600);
 	Serial.println("config_txt");
-	loadConfig();
-	String config_txt = getConfigTxt();
-	Serial.println(config_txt);
+	//loadConfig();
+	//String config_txt = getConfigTxt();
+	//Serial.println(config_txt);
 
 	// reset settings - wipe stored credentials for testing
 	// these are stored by the esp library
 
 	wm.setSaveConfigCallback(saveConfigCallback);
+	wm.resetSettings();
 
 	bool res = wm.autoConnect(apName);
 	//bool res = wm.startConfigPortal(apName);
 	if (!res) {
 		Serial.println("Failed to connect");
-		blink_err();
+		//blink_err();
 		wm.resetSettings();
 		// ESP.restart();
 	} else {
 		if (shouldSaveConfig) {
 			Serial.println("restart ...");
-			blink_ok();
+			// blink_ok();
 			ESP.restart();
 		}
 		// if you get here you have connected to the WiFi
@@ -169,7 +170,7 @@ void setup() {
 		Serial.println("IP address: ");
 		Serial.println(WiFi.localIP());
 		led_init();
-		blink_ok();
+		// blink_ok();
 		start_server();
 		client.setServer(mqtt_server, mqtt_server_port); // 设置mqtt服务器
   		client.setCallback(callback); // mqtt消息处理
@@ -178,6 +179,7 @@ void setup() {
 
 void loop() {
 	// put your main code here, to run repeatedly:
+	delay(100);
 	MDNS.update();
 	if (client.connected()) {
 		client.loop();

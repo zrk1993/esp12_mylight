@@ -12,3 +12,7 @@ gcc filetoarray.c -o filetoarray
 # 配网方式
 
 airkiss smartconfig softap
+
+
+// 1   2   3   4   5    6
+// tx rx io0 gnd vcc  rst
